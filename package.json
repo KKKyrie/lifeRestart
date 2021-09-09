@@ -2,7 +2,7 @@
     "name": "life_restart",
     "type": "module",
     "bin": "repl/index.js",
-    "dev-scripts": {
+    "scripts": {
         "test": "node test",
         "xlsxTransform": "node utils/xlsxTransform.js data",
         "dev": "webpack serve --open /public/index.html",
