@@ -407,14 +407,15 @@ class App{
                         link.click();
                         $("#lifeTrajectory").removeClass("deleteFixed");
                         // 微信内置浏览器，显示图片，需要用户单独保存
-                        if(ua.match(/MicroMessenger/i)=="micromessenger") {
-                            $('#domToImage2wx').attr('style',  'padding:5px;background-color:white;');
-                            $('#endImage').attr('src', dataUrl).on('click', () => {
-                                $(this).attr('style', 'display:none');
-                            });
-                        }
-
-                        lifeTrajectory.removeChild(footer);
+                        setTimeout(() => {
+                            if(ua.match(/MicroMessenger/i)=="micromessenger") {
+                                $('#domToImage2wx').attr('style',  'padding:5px;background-color:white;');
+                                $('#endImage').attr('src', dataUrl).attr('style', 'display:block;').on('click', () => {
+                                    $(this).attr('style', 'display:none;');
+                                });
+                            }
+                            lifeTrajectory.removeChild(footer);
+                        }, 0);
 
                     });
                 }
