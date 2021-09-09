@@ -3,6 +3,7 @@
     "type": "module",
     "bin": "repl/index.js",
     "scripts": {
+        "dev": "webpack serve --open /public/index.html",
         "bundle": "webpack --mode production"
     },
     "dev-scripts": {

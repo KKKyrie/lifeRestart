@@ -320,8 +320,8 @@ class App{
                 <button id="summary" class="mainbtn">人生总结</button>
                 <button id="domToImage" class="mainbtn">图片回放</button>
             </div>
-            <div class="domToImage2wx" style="padding:5px;background-color:white;">
-                <img src="" id="endImage" />
+            <div class="domToImage2wx"">
+                <img src="" id="endImage" style="display: none;" />
             </div>
         </div>
         `);
@@ -408,7 +408,10 @@ class App{
                         $("#lifeTrajectory").removeClass("deleteFixed");
                         // 微信内置浏览器，显示图片，需要用户单独保存
                         if(ua.match(/MicroMessenger/i)=="micromessenger") {
-                            $('#endImage').attr('src', dataUrl);
+                            $('#domToImage2wx').attr('style',  'padding:5px;background-color:white;');
+                            $('#endImage').attr('src', dataUrl).click(() => {
+                                (this).attr('style', 'display:none');
+                            });
                         }
 
                         lifeTrajectory.removeChild(footer);
