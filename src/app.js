@@ -318,9 +318,9 @@ class App{
             <ul id="lifeTrajectory" class="lifeTrajectory"></ul>
             <div class="btn-area">
                 <button id="summary" class="mainbtn">人生总结</button>
-                <button id="domToImage" class="mainbtn">人生回放</button>
+                <button id="domToImage" class="mainbtn">图片回放</button>
             </div>
-            <div class="domToImage2wx">
+            <div class="domToImage2wx" style="padding:5px;background-color:white;">
                 <img src="" id="endImage" />
             </div>
         </div>
@@ -407,7 +407,6 @@ class App{
                         link.click();
                         $("#lifeTrajectory").removeClass("deleteFixed");
                         // 微信内置浏览器，显示图片，需要用户单独保存
-                        this.hint('长按屏幕保存图片');
                         if(ua.match(/MicroMessenger/i)=="micromessenger") {
                             $('#endImage').attr('src', dataUrl);
                         }
