@@ -315,7 +315,17 @@ class App{
         const trajectoryPage = $(`
         <div id="main">
             <ul id="lifeProperty" class="lifeProperty"></ul>
-            <ul id="lifeTrajectory" class="lifeTrajectory"></ul>
+            <ul id="lifeTrajectory" class="lifeTrajectory">
+            <div id="kyrieFooter" class="footer hide"">
+                <div class="footer-desc">
+                    <p style="text-align:left;font-size:13px;font-weight:bold;">如何重开人生？</p>
+                    <p style="text-align:left;font-size:12px;">1.扫码关注</p>
+                    <p style="text-align:left;font-size:12px;">2.发送关键词「重开」</p>
+                    <p style="text-align:left;font-size:12px;">即可获取入口地址</p>
+                </div>
+                <img class="footer-img" src="./images/qrcode3.png" />
+            </div>
+            </ul>
             <div class="btn-area">
                 <button id="summary" class="mainbtn">人生总结</button>
                 <button id="domToImage" class="mainbtn">图片回放</button>
@@ -371,33 +381,10 @@ class App{
                 $("#lifeTrajectory").addClass("deleteFixed");
                 const ua = navigator.userAgent.toLowerCase();
                 // TODO: 拼接公众号二维码到最底下
-                const footer = document.createElement('div');
-                footer.style = 'height:150px;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;background-color:white;';
-                const footer_desc = document.createElement('div');
-                const p0 = document.createElement('p');
-                const p1 = document.createElement('p');
-                const p2 = document.createElement('p');
-                const p3 = document.createElement('p');
-                p0.textContent = '如何重开人生？';
-                p0.style = 'text-align:left;font-size:13px;font-weight:bold;';
-                footer_desc.appendChild(p0);
-                p1.textContent = '1. 扫码关注';
-                p2.textContent = '2. 发送关键字“重开”';
-                p3.textContent = '即可获取入口地址';
-                [p1, p2, p3].forEach(p => {
-                    p.style = 'text-align:left;font-size:12px;';
-                    footer_desc.appendChild(p);
-                });
-                const footer_image = document.createElement('img');
-                footer_image.alt = '';
-                footer_image.style = 'display:block;height:150px;width:auto;';
-                [footer_desc, footer_image].forEach(item => {
-                    footer.appendChild(item);
-                });
+                $('#kyrieFooter').removeClass('hide');
 
                 const lifeTrajectory = document.querySelector('#lifeTrajectory');
-                lifeTrajectory.appendChild(footer);
-                footer_image.onload = () => {
+                // footer_image.onload = () => {
                     domtoimage.toJpeg(lifeTrajectory)
                     .then(function (dataUrl) {
                         // let link = document.createElement('a');
@@ -415,12 +402,11 @@ class App{
                                     $('#domToImage2wx').addClass('hide');
                                 });
                             // }
-                            lifeTrajectory.removeChild(footer);
+                            $('#kyrieFooter').addClass('hide');
                         }, 0);
 
                     });
-                }
-                footer_image.src = './images/qrcode3.png';
+                // }
             })
         trajectoryPage
             .find('#summary')

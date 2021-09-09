@@ -801,3 +801,22 @@ i {
   display: none;
   z-index: -1;
 }
+
+.footer {
+  height:150px;
+  padding:10px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background-color:white;
+}
+
+.footer.hide {
+  display: none;
+}
+
+.footer-img {
+  display:block;
+  height:150px;
+  width:auto;
+}
