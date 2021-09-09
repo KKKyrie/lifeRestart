@@ -5,7 +5,7 @@
     "dev-scripts": {
         "test": "node test",
         "xlsxTransform": "node utils/xlsxTransform.js data",
-        "dev": "webpack serve --open /view/index.html",
+        "dev": "webpack serve --open /public/index.html",
         "build": "webpack --mode production"
     },
     "dependencies": {},
