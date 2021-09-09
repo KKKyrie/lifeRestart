@@ -320,8 +320,8 @@ class App{
                 <button id="summary" class="mainbtn">人生总结</button>
                 <button id="domToImage" class="mainbtn">图片回放</button>
             </div>
-            <div class="domToImage2wx"">
-                <img src="" id="endImage" style="display: none;" />
+            <div class="domToImage2wx hide">
+                <img class="hide" src="" id="endImage" />
             </div>
         </div>
         `);
@@ -390,7 +390,6 @@ class App{
                 });
                 const footer_image = document.createElement('img');
                 footer_image.alt = '';
-                footer_image.src = 'https://kyrieliu.cn/images/qrcode3.png';
                 footer_image.style = 'display:block;height:150px;width:auto;';
                 [footer_desc, footer_image].forEach(item => {
                     footer.appendChild(item);
@@ -401,24 +400,27 @@ class App{
                 footer_image.onload = () => {
                     domtoimage.toJpeg(lifeTrajectory)
                     .then(function (dataUrl) {
-                        let link = document.createElement('a');
-                        link.download = '我的人生回放.jpeg';
-                        link.href = dataUrl;
-                        link.click();
+                        // let link = document.createElement('a');
+                        // link.download = '我的人生回放.jpeg';
+                        // link.href = dataUrl;
+                        // link.click();
                         $("#lifeTrajectory").removeClass("deleteFixed");
                         // 微信内置浏览器，显示图片，需要用户单独保存
                         setTimeout(() => {
-                            if(ua.match(/MicroMessenger/i)=="micromessenger") {
-                                $('#domToImage2wx').attr('style',  'padding:5px;background-color:white;');
-                                $('#endImage').attr('src', dataUrl).attr('style', 'display:block;z-index:999').on('click', () => {
-                                    $(this).attr('style', 'display:none;z-index:-1;');
+                            // if(ua.match(/MicroMessenger/i)=="micromessenger") {
+                                $('#domToImage2wx').removeClass('hide');
+                                $('#endImage').attr('src', dataUrl).removeClass('hide').on('click', (ev) => {
+                                    console.log(ev);
+                                    $('#endImage').addClass('hide');
+                                    $('#domToImage2wx').addClass('hide');
                                 });
-                            }
+                            // }
                             lifeTrajectory.removeChild(footer);
                         }, 0);
 
                     });
                 }
+                footer_image.src = './images/qrcode3.png';
             })
         trajectoryPage
             .find('#summary')

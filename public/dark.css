@@ -784,8 +784,22 @@ i {
   position: fixed;
   z-index: 1111;
   width: 100%;
+  width:66.7%;
+  box-shadow:10px 10px 10px gray;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+}
+.domToImage2wx.hide {
+  display: none;
 }
 
 .domToImage2wx img {
+  display: block;
   width: 100%;
+  z-index: 9999;
+}
+.domToImage2wx img.hide {
+  display: none;
+  z-index: -1;
 }
