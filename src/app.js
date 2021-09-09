@@ -409,8 +409,8 @@ class App{
                         // 微信内置浏览器，显示图片，需要用户单独保存
                         if(ua.match(/MicroMessenger/i)=="micromessenger") {
                             $('#domToImage2wx').attr('style',  'padding:5px;background-color:white;');
-                            $('#endImage').attr('src', dataUrl).click(() => {
-                                (this).attr('style', 'display:none');
+                            $('#endImage').attr('src', dataUrl).on('click', () => {
+                                $(this).attr('style', 'display:none');
                             });
                         }
 
