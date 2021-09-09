@@ -407,6 +407,7 @@ class App{
                         link.click();
                         $("#lifeTrajectory").removeClass("deleteFixed");
                         // 微信内置浏览器，显示图片，需要用户单独保存
+                        this.hint('长按屏幕保存图片');
                         if(ua.match(/MicroMessenger/i)=="micromessenger") {
                             $('#endImage').attr('src', dataUrl);
                         }
