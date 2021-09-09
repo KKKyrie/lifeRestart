@@ -320,7 +320,7 @@ class App{
                 <button id="summary" class="mainbtn">人生总结</button>
                 <button id="domToImage" class="mainbtn">图片回放</button>
             </div>
-            <div class="domToImage2wx hide">
+            <div id="domToImage2wx" class="domToImage2wx hide">
                 <img class="hide" src="" id="endImage" />
             </div>
         </div>
