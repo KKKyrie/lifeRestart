@@ -66,9 +66,9 @@ class Talent {
                 else if(gradeRandom>=0.001) grade = 2;
                 else grade = 3;
 
-                while(talentList[grade].length == 0) grade--;
+                while(!!talentList[grade] === true && talentList[grade].length == 0) grade--;
 
-                const length = talentList[grade].length;
+                const length = !!talentList[grade] ? talentList[grade].length : 0;
 
                 const random = Math.floor(Math.random()*length) % length;
                 return talentList[grade].splice(random,1)[0];

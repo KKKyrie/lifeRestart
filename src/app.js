@@ -56,7 +56,6 @@ class App{
         <div id="main">
             <div id="cnt" class="head">已重开1次</div>
             <button id="rank">排行榜</button>
-            <button id="specialthanks">特别感谢</button>
             <button id="themeToggleBtn">黑</button>
             <div id="title">
                 人生重开模拟器<br>
@@ -98,25 +97,10 @@ class App{
                 this.setTheme(localStorage.getItem('theme'))
             });
 
-        indexPage
-            .find('#specialthanks')
-            .click(()=>this.switch('specialthanks'));
-
         const specialThanksPage = $(`
-        <div id="main">
-            <button id="specialthanks">返回</button>
-            <div id="spthx">
-                <ul class="g1"></ul>
-                <ul class="g2"></ul>
-            </div>
-            <button class="sponsor" onclick="window.open('https://afdian.net/@LifeRestart')" style="background: linear-gradient(90deg,#946ce6,#7e5fd9); left:auto; right:50%; transform: translate(-2rem,-50%);">打赏策划(爱发电)</button>
-            <button class="sponsor" onclick="window.open('https://dun.mianbaoduo.com/@vickscarlet')" style="background-color:#c69; left:50%; right:auto; transform: translate(2rem,-50%);">打赏程序(顿顿饭)</button>
+        <div id="specialThanksPage">
         </div>
         `);
-
-        specialThanksPage
-            .find('#specialthanks')
-            .click(()=>this.switch('index'));
 
         // Talent
         const talentPage = $(`
@@ -387,7 +371,36 @@ class App{
             .click(()=>{
                 $("#lifeTrajectory").addClass("deleteFixed");
                 const ua = navigator.userAgent.toLowerCase();
-                domtoimage.toJpeg(document.getElementById('lifeTrajectory'))
+                // TODO: 拼接公众号二维码到最底下
+                const footer = document.createElement('div');
+                footer.style = 'height:150px;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;background-color:white;';
+                const footer_desc = document.createElement('div');
+                const p0 = document.createElement('p');
+                const p1 = document.createElement('p');
+                const p2 = document.createElement('p');
+                const p3 = document.createElement('p');
+                p0.textContent = '如何重开人生？';
+                p0.style = 'text-align:left;font-size:13px;font-weight:bold;';
+                footer_desc.appendChild(p0);
+                p1.textContent = '1. 扫码关注';
+                p2.textContent = '2. 发送关键字“重开”';
+                p3.textContent = '即可获取入口地址';
+                [p1, p2, p3].forEach(p => {
+                    p.style = 'text-align:left;font-size:12px;';
+                    footer_desc.appendChild(p);
+                });
+                const footer_image = document.createElement('img');
+                footer_image.alt = '';
+                footer_image.src = 'https://kyrieliu.cn/images/qrcode3.png';
+                footer_image.style = 'display:block;height:150px;width:auto;';
+                [footer_desc, footer_image].forEach(item => {
+                    footer.appendChild(item);
+                });
+
+                const lifeTrajectory = document.querySelector('#lifeTrajectory');
+                lifeTrajectory.appendChild(footer);
+                footer_image.onload = () => {
+                    domtoimage.toJpeg(lifeTrajectory)
                     .then(function (dataUrl) {
                         let link = document.createElement('a');
                         link.download = '我的人生回放.jpeg';
@@ -399,7 +412,10 @@ class App{
                             $('#endImage').attr('src', dataUrl);
                         }
 
+                        lifeTrajectory.removeChild(footer);
+
                     });
+                }
             })
         trajectoryPage
             .find('#summary')
