@@ -410,8 +410,8 @@ class App{
                         setTimeout(() => {
                             if(ua.match(/MicroMessenger/i)=="micromessenger") {
                                 $('#domToImage2wx').attr('style',  'padding:5px;background-color:white;');
-                                $('#endImage').attr('src', dataUrl).attr('style', 'display:block;').on('click', () => {
-                                    $(this).attr('style', 'display:none;');
+                                $('#endImage').attr('src', dataUrl).attr('style', 'display:block;z-index:999').on('click', () => {
+                                    $(this).attr('style', 'display:none;z-index:-1;');
                                 });
                             }
                             lifeTrajectory.removeChild(footer);
